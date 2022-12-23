@@ -7,5 +7,5 @@
   register: config_out
 
 - name: Display config
-  debug: m
+  debug:
     msg: "{{ config_out.ansible_facts.ansible_net_config | split('\n') }}"
