@@ -1,0 +1,22 @@
+---
+- name: Merge provided configuration with device configuration
+  ios_vlans:
+    config:
+    - name: Endpoints
+      vlan_id: 10
+      state: active
+      shutdown: enabled
+    - name: Guest
+      vlan_id: 20
+      state: active
+      shutdown: enabled
+    - name: IoT
+      vlan_id: 30
+      state: active
+      shutdown: enabled
+    state: merged
+
+- name: Gather VLANs
+  ios_vlans:
+    config:
+    state: gathered
