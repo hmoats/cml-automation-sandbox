@@ -1,2 +1,11 @@
 ---
 # tasks file for backup
+- name: Gather only the config and default facts
+  ios_facts:
+    gather_subset:
+    - config
+  register: config_out
+
+- name: Display config
+  debug:
+    var: config_out.stdout_lines
