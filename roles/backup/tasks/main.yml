@@ -8,4 +8,4 @@
 
 - name: Display config
   debug:
-    var: config_out
+    var: config_out.ansbible_facts.ansible_net_configs
