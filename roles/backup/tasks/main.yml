@@ -8,4 +8,4 @@
 
 - name: Display config
   debug:
-    msg: "config_out.ansible_facts.ansible_net_config.split('\n')"
+    msg: {{ config_out.ansible_facts.ansible_net_config | split('\n') }}
