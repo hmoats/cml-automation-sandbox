@@ -4,7 +4,7 @@
   ios_facts:
     gather_subset:
     - config
-  register: config_out
+    register: config_out
 
 - name: Display config
   debug:
