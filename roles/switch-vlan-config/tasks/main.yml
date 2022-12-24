@@ -1,4 +1,7 @@
 ---
+#######################################################################
+# Verify host is a valid target for configuration changes
+#######################################################################
 - name: Abort if not IOS
   fail:
     msg: "Aborting. {{ ansible_host }} does not appear to be of type IOS"
@@ -9,6 +12,18 @@
     msg: "Aborting. {{ ansible_net_version }} is not supported in vars/main.yml"
   when: ansible_net_version not in supported_versions
 
+#######################################################################
+# First, we will delete any VLANs in group or host var my_deleted_vlans
+# Then, we add VLANs in group or host var my_added_vlans
+#######################################################################
+- name: Merge group or host var VLANs with target
+  ios_vlans:
+    config:
+      - vlan_id: "{{ item.id }}"
+    state: deleted
+  loop: "{{ my_deleted_vlans }}"
+  when: my_delted_vlans is iterable
+
 - name: Merge group or host var VLANs with target
   ios_vlans:
     config:
@@ -16,7 +31,7 @@
       vlan_id: "{{ item.id }}"
       state: active
     state: merged
-  loop: "{{ my_vlans }}"
+  loop: "{{ my_added_vlans }}"
 
 - name: Gather VLANs post merge
   ios_vlans:

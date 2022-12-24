@@ -1,7 +1,10 @@
 # VLAN assignments for switches group
-my_vlans:
+my_added_vlans:
   - { name: 'Endpoints', id: 10 }
   - { name: 'Guests', id: 20 }
   - { name: 'IoT', id: 30 }
   - { name: 'Security', id: 40 }
   - { name: 'Management', id: 50 }
+
+my_delete_vlans:
+  - { name: 'Test', id: 60 }
