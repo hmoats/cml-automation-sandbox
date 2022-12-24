@@ -7,4 +7,3 @@ my_added_vlans:
   - { name: 'Management', id: 50 }
 
 my_deleted_vlans:
-  - { name: 'Test', id: 60 }
