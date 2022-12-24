@@ -1,0 +1,4 @@
+---
+- name: Print debug of ios_facts
+  debug:
+    var: ios_facts
