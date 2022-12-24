@@ -16,4 +16,4 @@
 
 - name: Print gathered VLANs
   debug:
-    msg: vlan.out
+    msg: vlan_out

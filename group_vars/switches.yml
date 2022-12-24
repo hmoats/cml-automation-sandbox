@@ -2,3 +2,4 @@ my_vlans:
   - { name: 'Endpoints', id: 10 }
   - { name: 'Guests', id: 20 }
   - { name: 'IoT', id: 30 }
+  - { name: 'Security', id: 40 }
