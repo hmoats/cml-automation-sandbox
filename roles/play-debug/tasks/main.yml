@@ -1,6 +1,4 @@
 ---
 - name: Print debug of ios_facts
   debug:
-    var: "{{ item }}"
-  with_items:
-    - ansible_net_model
+    var: ansible_facts
