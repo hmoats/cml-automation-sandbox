@@ -1,8 +1,13 @@
 ---
-- name: Pre configuration checks
+- name: Abort if not IOS
   fail:
-    msg: "abort"
-  when: (ansible_net_iostype != 'IOS') or (ansible_net_version not in supported_versions)
+    msg: "Aborting. {{ ansible_host }} does not appear to be of type IOS"
+  when: ansible_net_iostype != 'IOS'
+
+- name: Abort if IOS version is not supported by this task
+  fail:
+    msg: "Aborting. {{ ansible_net_version }} is not supported in tasks/vars/main.yml
+  when: ansible_net_version not in supported_versions
 
 - name: Merge group or host var VLANs with target
   ios_vlans:
