@@ -1,5 +1,5 @@
 ---
-- name: Merge provided configuration with device configuration
+- name: Merge group or host var VLANs with target
   ios_vlans:
     config:
     - name: "{{ item.name }}"
@@ -8,12 +8,12 @@
     state: merged
   loop: "{{ my_vlans }}"
 
-- name: Gather VLANs
+- name: Gather VLANs post merge
   ios_vlans:
     config:
     state: gathered
   register: vlan_out
 
-- name: Print gathered VLANs
+- name: Print VLAN list
   debug:
     var: vlan_out
