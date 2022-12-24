@@ -22,7 +22,7 @@
       - vlan_id: "{{ item.id }}"
     state: deleted
   loop: "{{ my_deleted_vlans }}"
-  when: my_delted_vlans is iterable
+  when: my_deleted_vlans is iterable
 
 - name: Merge group or host var VLANs with target
   ios_vlans:
