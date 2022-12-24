@@ -6,7 +6,7 @@
 
 - name: Abort if IOS version is not supported by this task
   fail:
-    msg: "Aborting. {{ ansible_net_version }} is not supported in tasks/vars/main.yml"
+    msg: "Aborting. {{ ansible_net_version }} is not supported in vars/main.yml"
   when: ansible_net_version not in supported_versions
 
 - name: Merge group or host var VLANs with target
@@ -22,8 +22,12 @@
   ios_vlans:
     config:
     state: gathered
-  register: vlan_out
+  register: vlans_out
 
 - name: Print VLAN list
   debug:
-    var: vlan_out
+    var: vlans_out
+
+- name: Save running to startup when modified
+  ios_config:
+    save_when: modified
