@@ -1,8 +1,8 @@
 ---
 - name: Debug IOS facts
   debug:
-    var: ios_facts
-    
+    var: ansible_net_iostype
+
 - name: Merge group or host var VLANs with target
   ios_vlans:
     config:
