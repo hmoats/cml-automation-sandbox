@@ -2,8 +2,8 @@
 - name: Merge provided configuration with device configuration
   ios_vlans:
     config:
-    - name: "{{ my_vlans.name }}"
-      vlan_id: "{{ my_vlans.id }}"
+    - name: "{{ item.name }}"
+      vlan_id: "{{ item.id }}"
       state: active
     state: merged
     with_items: "{{ my_vlans }}"
