@@ -10,3 +10,7 @@
     banner: exec
     text: "Begin session with {{ inventory_hostname }} at {{ ansible_host }}"
     state: present
+
+- name: Save running to startup when modified
+  ios_config:
+    save_when: modified
