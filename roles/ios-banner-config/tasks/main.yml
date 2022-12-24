@@ -8,5 +8,5 @@
 - name: Configure the motd banner
   ios_banner:
     banner: exec
-    text: "Begin session with {{ ansible_host }} version {{ ansible_net_version }}"
+    text: "Begin session with {{ inventory_hostname }} at {{ ansible_host }}"
     state: present
