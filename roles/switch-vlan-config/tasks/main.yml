@@ -21,7 +21,7 @@
     config:
       - vlan_id: "{{ item.id }}"
     state: deleted
-  loop: "{{ my_deleted_vlans }}"
+  loop: "{{ my_deleted_vlans | default([]) }}"
   when: my_deleted_vlans is iterable
 
 - name: Merge group or host var VLANs for target
@@ -31,7 +31,7 @@
       vlan_id: "{{ item.id }}"
       state: active
     state: merged
-  loop: "{{ my_added_vlans }}"
+  loop: "{{ my_added_vlans | default([]) }}"
 
 - name: Gather VLANs post merge
   ios_vlans:

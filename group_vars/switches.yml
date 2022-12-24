@@ -6,4 +6,5 @@ my_added_vlans:
   - { name: 'Security', id: 40 }
   - { name: 'Management', id: 50 }
 
-my_deleted_vlans:
+# my_deleted_vlans:
+#   - { name: 'Example', id: 999 }
