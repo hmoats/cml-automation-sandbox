@@ -2,21 +2,18 @@
 - name: Merge provided configuration with device configuration
   ios_vlans:
     config:
-    - name: Endpoints
-      vlan_id: 10
+    - name: "{{ my_vlans.name }}"
+      vlan_id: "{{ my_vlans.id }}"
       state: active
-      shutdown: disabled
-    - name: Guest
-      vlan_id: 20
-      state: active
-      shutdown: disabled
-    - name: IoT
-      vlan_id: 30
-      state: active
-      shutdown: disabled
     state: merged
+    with_items: {{ my_vlans }}
 
 - name: Gather VLANs
   ios_vlans:
     config:
     state: gathered
+    register: vlan_out
+
+- name: Print gathered VLANs
+  debug:
+    msg: vlan.out

@@ -1,0 +1,4 @@
+my_vlans:
+  - { name: 'Endpoints', id: 10 }
+  - { name: 'Endpoints', id: 10 }
+  - { name: 'Endpoints', id: 10 }
