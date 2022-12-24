@@ -2,7 +2,7 @@
 - name: Abort if not IOS
   fail:
     msg: "Aborting. {{ ansible_host }} does not appear to be of type IOS"
-  when: ansible_net_iostype != 'ABC'
+  when: ansible_net_iostype != 'IOS'
 
 - name: Abort if IOS version is not supported by this task
   fail:
