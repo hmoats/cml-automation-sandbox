@@ -1,0 +1,9 @@
+---
+- name: Merge group or host var VLANs for target
+  ios_l2_interfaces:
+    config:
+    - name: "{{ item.name }}"
+      vlan_id: "{{ item.id }}"
+      state: active
+    state: merged
+  loop: "{{ my_added_vlans | default([]) }}"
