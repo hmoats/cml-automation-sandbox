@@ -1,7 +1,10 @@
 ---
 - name: Debug IOS facts
-  debug:
-    var: ansible_net_version
+  fail:
+    msg: "abort"
+  when: 
+    - ansible_net_iostype != 'IOS'
+    - ansible_net_version not int lookup('vars', supported_versions)
 
 - name: Merge group or host var VLANs with target
   ios_vlans:
