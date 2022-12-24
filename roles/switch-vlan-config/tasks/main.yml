@@ -12,7 +12,7 @@
   ios_vlans:
     config:
     state: gathered
-    register: vlan_out
+  register: vlan_out
 
 - name: Print gathered VLANs
   debug:
