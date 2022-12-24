@@ -15,7 +15,7 @@
     - name: "{{ item.name }}"
       vlan_id: "{{ item.id }}"
       state: active
-    state: merged
+    state: overridden
   loop: "{{ my_vlans }}"
 
 - name: Gather VLANs post merge

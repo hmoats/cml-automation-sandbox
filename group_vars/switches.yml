@@ -5,4 +5,3 @@ my_vlans:
   - { name: 'IoT', id: 30 }
   - { name: 'Security', id: 40 }
   - { name: 'Management', id: 50 }
-  - { name: 'Test', id: 60 }
