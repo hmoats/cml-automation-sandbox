@@ -2,7 +2,7 @@
 - name: Pre configuration checks
   fail:
     msg: "abort"
-  when: (ansible_net_iostype != 'IOS') and (not supported_version[ansible_net_version])
+  when: (ansible_net_iostype != 'IOS') and (not supported_versions[ansible_net_version])
 
 - name: Merge group or host var VLANs with target
   ios_vlans:
