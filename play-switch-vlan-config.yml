@@ -2,4 +2,4 @@
   gather_facts: True
   roles:
     - _play-debug
-    - switch-vlan-config
+    - ios-switch-vlan-config
