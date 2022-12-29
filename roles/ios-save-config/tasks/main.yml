@@ -1,4 +1,4 @@
 ---
-- name: Configure the motd banner
+- name: Save IOS configuration
   cisco.ios.ios_config:
     save_when: modified

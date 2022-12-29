@@ -1,9 +1,44 @@
 ---
+#######################################################################
+# Verify host is a valid target for configuration changes
+#######################################################################
+- name: Abort if not IOS
+  fail:
+    msg: "Aborting. {{ ansible_host }} does not appear to be of type IOS"
+  when: ansible_net_iostype != 'IOS'
+
+- name: Abort if IOS version is not supported by this task
+  fail:
+    msg: "Aborting. {{ ansible_net_version }} is not supported in vars/main.yml"
+  when: ansible_net_version not in supported_versions
+
+#######################################################################
+# First, we will delete any VLANs in group or host var my_deleted_vlans
+# Then, we add VLANs in group or host var my_added_vlans
+#######################################################################
+- name: Delete group or host var VLANs for target
+  cisco.ios.ios_vlans:
+    config:
+      - vlan_id: "{{ item.id }}"
+    state: deleted
+  loop: "{{ my_deleted_vlans | default([]) }}"
+  when: my_deleted_vlans is iterable
+
 - name: Merge group or host var VLANs for target
-  ios_l2_interfaces:
+  cisco.ios.ios_vlans:
     config:
     - name: "{{ item.name }}"
       vlan_id: "{{ item.id }}"
       state: active
     state: merged
   loop: "{{ my_added_vlans | default([]) }}"
+
+- name: Gather VLANs post merge
+  cisco.ios.ios_vlans:
+    config:
+    state: gathered
+  register: vlans_out
+
+- name: Print VLAN list
+  debug:
+    var: vlans_out
