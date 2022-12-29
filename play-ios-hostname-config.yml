@@ -1,5 +1,7 @@
 - hosts: all
   gather_facts: True
   roles:
-    - _play-debug
-    - ios-hostname-config
+    - role: _play-debug
+      when: play_debug is defined
+    - role: ios-hostname-config
+    - role: ios-save-config
