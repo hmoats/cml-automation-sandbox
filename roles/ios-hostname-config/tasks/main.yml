@@ -1,10 +1,10 @@
 ---
-- name: "Configure hostname {{ inventory_hostname }}"
+- name: "Configure hostname {{ hostname_alias | inventory_hostname }}"
   cisco.ios.ios_hostname:
     config:
-      hostname: "{{ inventory_hostname }}"
+      hostname: "{{ hostname_alias | inventory_hostname }}"
     state: merged
 
 - name: Save running to startup when modified
-  ios_config:
+  cisco.ios.ios_config:
     save_when: modified
