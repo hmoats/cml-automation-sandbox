@@ -1,4 +1,4 @@
 ---
-- name: Save running to startup when modified
+- name: Configure the motd banner
   cisco.ios.ios_config:
     save_when: modified

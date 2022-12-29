@@ -4,4 +4,3 @@
     - role: _play-debug
       when: play_debug is defined
     - role: ios-banner-config
-    - role: ios-save-config          
