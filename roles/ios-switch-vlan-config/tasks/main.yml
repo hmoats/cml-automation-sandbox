@@ -17,7 +17,7 @@
 # Then, we add VLANs in group or host var my_added_vlans
 #######################################################################
 - name: Delete group or host var VLANs for target
-  ios_vlans:
+  cisco.ios.ios_vlans:
     config:
       - vlan_id: "{{ item.id }}"
     state: deleted
@@ -25,7 +25,7 @@
   when: my_deleted_vlans is iterable
 
 - name: Merge group or host var VLANs for target
-  ios_vlans:
+  cisco.ios.ios_vlans:
     config:
     - name: "{{ item.name }}"
       vlan_id: "{{ item.id }}"
@@ -34,7 +34,7 @@
   loop: "{{ my_added_vlans | default([]) }}"
 
 - name: Gather VLANs post merge
-  ios_vlans:
+  cisco.ios.ios_vlans:
     config:
     state: gathered
   register: vlans_out
@@ -42,7 +42,3 @@
 - name: Print VLAN list
   debug:
     var: vlans_out
-
-- name: Save running to startup when modified
-  ios_config:
-    save_when: modified

@@ -1,16 +1,12 @@
 ---
 - name: Configure the login banner
-  ios_banner:
+  cisco.ios.ios_banner:
     banner: login
     text: "{{ lookup('file', './login-banner') }}"
     state: present
 
 - name: Configure the motd banner
-  ios_banner:
+  cisco.ios.ios_banner:
     banner: exec
-    text: "Begin session with {{ inventory_hostname }} at {{ ansible_host }}"
+    text: "Begin session with {{ hostname_alias | default( inventory_hostname ) }} at {{ ansible_host }}"
     state: present
-
-- name: Save running to startup when modified
-  ios_config:
-    save_when: modified

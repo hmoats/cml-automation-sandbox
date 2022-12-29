@@ -1,5 +1,7 @@
 - hosts: all
   gather_facts: True
   roles:
-    - _play-debug
-    - ios-banner-config
+    - role: _play-debug
+      when: "{{ play_debug }}"
+    - role: ios-banner-config
+    - role: ios-save-config          
