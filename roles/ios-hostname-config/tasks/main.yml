@@ -1,6 +1,10 @@
 ---
-- name: "Set hostname {{ hostname_alias | inventory_hostname }}"
+- name: Set hostname {{ hostname_alias | default( inventory_hostname ) }}
   ios_hostname:
     config:
-      hostname: "{{ hostname_alias | inventory_hostname }}"
+      hostname: "{{ hostname_alias | default( inventory_hostname ) }}"
     state: merged
+
+- name: Save running to startup when modified
+  ios_config:
+    save_when: modified
