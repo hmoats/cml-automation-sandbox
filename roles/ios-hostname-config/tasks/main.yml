@@ -1,6 +1,6 @@
 ---
 - name: "Configure hostname {{ inventory_hostname }}"
-  ios_hostname:
+  cisco.ios.ios_hostname:
     config:
       hostname: "{{ inventory_hostname }}"
     state: merged
